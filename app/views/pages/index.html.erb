@@ -1,0 +1,32 @@
+<h1> Marcador de páginas </h1>
+
+<table cellspacing="5" cellpadding="5">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td valign="top"><%= link_to(image_tag(page.livro.capa_url, :width => 150, :height => 150),page.livro.capa_url) if page.livro.capa? %></td>
+        <td>Data:  <%= page.data %> <br>
+        <% if page.livrocompleto == true %>
+              Livro concluído  <br> <br>
+        <% else %>
+              Última página lida: <%= page.pagina %> <br> <br>
+        <% end %>
+        <%= link_to 'Mostrar', page %> <br> <br>
+        <%= link_to 'Editar', edit_page_path(page) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Escolher outro livro', new_page_path %>
+
+<%= paginate @pages %>

@@ -1,0 +1,29 @@
+    <h1>Livros</h1>
+
+    <table cellspacing="5" cellpadding="5">
+      <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @livros.each do |livro| %>
+                <td>
+                <td><%= link_to( image_tag(livro.capa_url, :width => 150, :height => 150),livro.capa_url) if livro.capa? %> </td>
+                <td valign="top"> Titulo: <%= livro.titulo %> <br>
+                  Autor: <%= livro.autor %> <br>
+                  Editora: <%= livro.editora %> <br> <br>
+                  <%= link_to 'Mostrar', livro %> <br><br>
+                  <%= link_to 'Editar', edit_livro_path(livro) %></br> <br>
+                  <%= link_to 'Apagar', livro, method: :delete, data: { confirm: 'Tem certeza?' } %>
+                </td></tr>
+            <% end %>
+     </tbody>
+
+    </table>
+    <br>
+
+    <%= link_to 'Novo Livro', new_livro_path %>
+
+    <%= paginate @livros  %>

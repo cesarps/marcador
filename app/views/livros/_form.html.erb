@@ -1,0 +1,41 @@
+<%= form_for(@livro) do |f| %>
+  <% if @livro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@livro.errors.count, "error") %> não permitiram esse cadastro </h2>
+
+      <ul>
+      <% @livro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :titulo %><br>
+    <%= f.text_field :titulo, size: 50 %>
+  </div>
+  <div class="field">
+    <%= f.label :autor %><br>
+    <%= f.text_area :autor, rows:2, cols: 50 %>
+  </div>
+  <div class="field">
+    <%= f.label :editora %><br>
+    <%= f.text_field :editora, size: 50 %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field(:capa_cache) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :capa %> <br>
+    <%= f.file_field :capa %>
+
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Enviar" %>
+  </div>
+<% end %>

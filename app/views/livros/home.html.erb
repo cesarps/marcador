@@ -1,0 +1,11 @@
+<%= form_tag @pages, new_page_path do %>
+
+<div class="field">
+  <%= select_tag :livro_id, options_from_collection_for_select(Livro.all, :id, :titulo) %>
+</div>
+
+<div class="actions">
+  <%= submit_tag "Enviar" %>
+</div>
+
+<% end %>
